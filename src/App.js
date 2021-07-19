@@ -1,24 +1,21 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import ContentLayout from './hoc/ContentLayout';
+
+import Authorization from './pages/Authorization';
 import './App.css';
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* props.isAuthenticated */}
+      <ContentLayout isAuthenticated={false}>
+        <Switch>
+          <Route path='/' component={Authorization} exact />
+          {/* <PrivateRoute path='/main' component={Main} /> */}
+        </Switch>
+      </ContentLayout>
+    </>
   );
 }
 
