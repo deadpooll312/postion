@@ -1,0 +1,19 @@
+.switch-group {
+  display: inline-block;
+}
+
+.switch-group a {
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration-line: underline;
+  color: #00a2e8;
+  margin-left: 5px;
+}
+
+.switch-group a:first-child {
+  margin: 0;
+}
+
+.active {
+  color: #c4c4c4 !important;
+}

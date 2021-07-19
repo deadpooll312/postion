@@ -1,18 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Form, Input, Button, Card, Checkbox, Row, Col } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Form, Input, Button, Card, Modal } from 'antd';
 
 // import { authenticationService } from '../../services/authenticationService';
 
 import './index.css';
+import SwtichGroup from '../../components/SwtichGroup';
 
 function Authorization(props) {
-  //   useEffect(() => {
-  //     if (props.isAuthenticated) {
-  //       props.history.push('/main');
-  //     }
-  //   }, [props]);
+  const [visible, setVisible] = useState(false);
+  const [errorText, setErrorText] = useState(false);
 
   const onFinish = ({ email, password }) => {
     // props.showLoader();
@@ -31,13 +28,40 @@ function Authorization(props) {
 
   return (
     <div className='auth-container'>
+      <Modal
+        centered
+        visible={visible}
+        footer={null}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+        className={'auth-container--modal'}
+      >
+        <p className='modal-title'>Восстановление доступа</p>
+        <p>
+          Для восстановления доступа к аккаунту, обратитесь к администратору
+          системы?
+        </p>
+        <Button
+          className='auth-container__btn'
+          onClick={() => {
+            setVisible(false);
+          }}
+        >
+          Ок
+        </Button>
+      </Modal>
       <Card
         bordered={false}
         style={{ width: '35%', padding: '0' }}
         className='auth-container__form-wrapper'
       >
         <div className='auth-container__logo'></div>
-        <p className='auth-container__title'>Авторизация в сестеме</p>
+        <p className='auth-container__title'>Авторизация в системе</p>
+        {errorText === true && (
+          <p className='auth-container__error-text'>
+            Ошибка входа, неправильный логин или пароль
+          </p>
+        )}
         <Form
           layout={'vertical'}
           name='normal_login'
@@ -48,7 +72,7 @@ function Authorization(props) {
           <Form.Item
             name='login'
             label='Логин'
-            rules={[{ required: true, message: 'ВВедите логин' }]}
+            rules={[{ required: true, message: 'Введите логин' }]}
           >
             <Input shape='round' className='auth-container__input' />
           </Form.Item>
@@ -61,17 +85,20 @@ function Authorization(props) {
           </Form.Item>
           <Form.Item>
             <Form.Item name='remember' noStyle>
-              <a href='' style={{ textDecoration: 'underline' }}>
-                KZ
-              </a>
-              <a href='' style={{ marginLeft: 5, textDecoration: 'underline' }}>
-                RU
-              </a>
-              <a href='' style={{ marginLeft: 5, textDecoration: 'underline' }}>
-                EN
-              </a>
+              <SwtichGroup
+                list={[
+                  { id: 0, title: 'KZ' },
+                  { id: 1, title: 'RU' },
+                  { id: 2, title: 'EN' },
+                ]}
+              />
             </Form.Item>
-            <a href='' style={{ float: 'right' }}>
+            <a
+              style={{ float: 'right', textDecoration: 'underline' }}
+              onClick={() => {
+                setVisible(true);
+              }}
+            >
               Забыли пароль?
             </a>
           </Form.Item>
