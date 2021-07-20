@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { Layout } from 'antd';
+import { Layout, Menu } from 'antd';
+import HeaderNav from '../../components/HeaderNav';
 
-const { Sider, Content } = Layout;
+const { Sider, Content, Header } = Layout;
 
 function ContentLayout(props) {
   const { isAuthenticated } = props;
+  console.log('isAuthenticated', isAuthenticated);
   if (!isAuthenticated) {
     return (
       <>
@@ -28,15 +30,7 @@ function ContentLayout(props) {
           <Aside />
         </Sider> */}
         <Layout className='site-layout'>
-          {/* <HeaderNav
-          // temperature={temp}
-          // icon={{ icon }}
-          // collapsed={collapsed}
-          // onCollapse={(value) => {
-          //   this.onCollapse(value);
-          // }}
-          /> */}
-
+          <HeaderNav />
           <Content
             className='site-layout-background'
             style={{

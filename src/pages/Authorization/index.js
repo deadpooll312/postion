@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Form, Input, Button, Card, Modal } from 'antd';
 
@@ -12,6 +12,9 @@ function Authorization(props) {
   const [errorText, setErrorText] = useState(false);
 
   const onFinish = ({ email, password }) => {
+    localStorage.setItem('isAuthenticated', true);
+    props.history.push('/main');
+
     // props.showLoader();
     // authenticationService
     //   .login(email, password)
