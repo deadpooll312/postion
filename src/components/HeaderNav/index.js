@@ -11,7 +11,7 @@ import './index.css';
 
 const { Header } = Layout;
 
-function HeaderNav() {
+function HeaderNav({ onOpen }) {
   return (
     <Header>
       <PageHeader
@@ -24,6 +24,10 @@ function HeaderNav() {
               justifyContent: 'center',
               background: '#25ACE3',
               padding: 25,
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              onOpen();
             }}
           >
             <MenuOutlined
@@ -34,12 +38,12 @@ function HeaderNav() {
           </div>
         }
         extra={[
-          <div>
+          <div key='1'>
             <Space>
               <SearchOutlined
                 style={{
                   color: '#fff',
-                  fontSize: 32,
+                  fontSize: 28,
                   marginRight: 48,
                   cursor: 'pointer',
                 }}
@@ -54,7 +58,7 @@ function HeaderNav() {
                 <BellFilled
                   style={{
                     color: '#FFB800',
-                    fontSize: 32,
+                    fontSize: 28,
                     marginRight: 48,
                     cursor: 'pointer',
                   }}
@@ -63,7 +67,7 @@ function HeaderNav() {
               <UserOutlined
                 style={{
                   color: '#fff',
-                  fontSize: 32,
+                  fontSize: 28,
                   cursor: 'pointer',
                 }}
               />

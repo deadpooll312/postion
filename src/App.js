@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import ContentLayout from './hoc/ContentLayout';
 
 import PrivateRoute from './components/PrivateRoute';
@@ -10,8 +11,7 @@ import './App.css';
 function App(props) {
   return (
     <>
-      {/* props.isAuthenticated */}
-      <ContentLayout isAuthenticated={localStorage.getItem('isAuthenticated')}>
+      <ContentLayout isAuthenticated={props.isAuthenticated}>
         <Switch>
           <Route path='/' component={Authorization} exact />
           <PrivateRoute path='/main' component={Main} />
@@ -21,4 +21,10 @@ function App(props) {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+}
+
+export default connect(mapStateToProps)(App);

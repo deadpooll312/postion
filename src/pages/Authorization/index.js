@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import { Form, Input, Button, Card, Modal } from 'antd';
 
@@ -11,8 +12,15 @@ function Authorization(props) {
   const [visible, setVisible] = useState(false);
   const [errorText, setErrorText] = useState(false);
 
+  useEffect(() => {
+    if (props.isAuthenticated) {
+      props.history.push('/main');
+    }
+  }, [props]);
+
   const onFinish = ({ email, password }) => {
     localStorage.setItem('isAuthenticated', true);
+    props.signIn();
     props.history.push('/main');
 
     // props.showLoader();
@@ -116,4 +124,18 @@ function Authorization(props) {
   );
 }
 
-export default Authorization;
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    signIn: () => dispatch({ type: 'SIGN_IN' }),
+    // showLoader: () => dispatch({ type: 'SHOW_LOADER' }),
+    // hideLoader: () => dispatch({ type: 'HIDE_LOADER' }),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Authorization);
