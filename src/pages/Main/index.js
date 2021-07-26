@@ -1,128 +1,200 @@
-import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Affix, Button } from 'antd';
-import { ReactComponent as BookMarkLogo } from '../../assets/icons/bookmark.svg';
-import { ReactComponent as StackLogo } from '../../assets/icons/stack.svg';
-import { ReactComponent as CameraLogo } from '../../assets/icons/camera.svg';
+import React, { useState } from 'react';
+import MapComponent from './MapComponent';
+import Buttons from './Buttons';
+import { Drawer, Divider } from 'antd';
 
-const position = [52.9435, 62.1415];
+import { ReactComponent as ClockMiniLogo } from '../../assets/icons/clock-mini.svg';
+import { ReactComponent as BookmarkMiniLogo } from '../../assets/icons/bookmark-mini.svg';
+import { ReactComponent as StartMiniLogo } from '../../assets/icons/star-mini.svg';
+import { ReactComponent as StartMiniYellowLogo } from '../../assets/icons/star-mini-yellow.svg';
+
+import './index.css';
+
+const recentZone = [
+  'Корпус ЗИиОФ 0',
+  'Добление 0',
+  'Корпус ЗИиОФ 6.2',
+  'Корпус ЗИиОФ 11.2',
+  'Добление 18',
+];
+
+const frequentZone = [
+  'Корпус ЗИиОФ 0',
+  'Добление 0',
+  'Корпус ЗИиОФ 6.2',
+  'Корпус ЗИиОФ 11.2',
+];
+
+const importantZone = [
+  'Корпус ЗИиОФ 0',
+  'Добление 0',
+  'Корпус ЗИиОФ 6.2',
+  'Корпус ЗИиОФ 11.2',
+];
 
 function Main() {
+  const [visibleBook, setVisibleBook] = useState(false);
   return (
     <>
-      <Map center={position} zoom={13} style={{ height: '100vh' }}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-        />
-        <Marker position={position}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </Map>
-      <Affix
-        style={{ position: 'absolute', bottom: 50, left: 50, zIndex: 999 }}
+      <MapComponent />
+      <Buttons
+        showBook={() => {
+          setVisibleBook(true);
+        }}
+      />
+      <Drawer
+        className={'book-drawer'}
+        headerStyle={{
+          textAlign: 'center',
+          padding: '60px',
+          color: '#25ACE3',
+        }}
+        contentWrapperStyle={{
+          width: '20%',
+        }}
+        title='Закладки'
+        placement={'right'}
+        closable={true}
+        onClose={() => {
+          setVisibleBook(false);
+        }}
+        visible={visibleBook}
+        key={'right'}
       >
-        <Button
-          style={{
-            fontWeight: 900,
-            fontSize: 22,
-            lineHeight: 26,
-            color: '#fff',
-            background: '#D82626',
-            display: 'flex',
-            border: 'none',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 65,
-            height: 65,
-            filter: 'drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.15))',
-          }}
-          shape='circle'
-          onClick={() => {
-            console.log(1);
-          }}
-        >
-          SOS
-        </Button>
-      </Affix>
-      <Affix style={{ position: 'absolute', top: 100, right: 50, zIndex: 999 }}>
-        <Button
-          style={{
-            fontWeight: 900,
-            fontSize: 22,
-            lineHeight: 26,
-            color: '#fff',
-            background: '#FFFFFF',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 65,
-            height: 65,
-            filter: 'drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.15))',
-          }}
-          shape='circle'
-          onClick={() => {
-            console.log(1);
-          }}
-        >
-          <BookMarkLogo />
-        </Button>
-      </Affix>
-      <Affix
-        style={{ position: 'absolute', bottom: 130, right: 50, zIndex: 999 }}
-      >
-        <Button
-          style={{
-            fontWeight: 900,
-            fontSize: 22,
-            lineHeight: 26,
-            color: '#fff',
-            background: '#FFFFFF',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 65,
-            height: 65,
-            filter: 'drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.15))',
-          }}
-          shape='circle'
-          onClick={() => {
-            console.log(1);
-          }}
-        >
-          <CameraLogo />
-        </Button>
-      </Affix>
-      <Affix
-        style={{ position: 'absolute', bottom: 50, right: 50, zIndex: 999 }}
-      >
-        <Button
-          style={{
-            fontWeight: 900,
-            fontSize: 22,
-            lineHeight: 26,
-            color: '#fff',
-            background: '#FFFFFF',
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 65,
-            height: 65,
-            filter: 'drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.15))',
-          }}
-          shape='circle'
-          onClick={() => {
-            console.log(1);
-          }}
-        >
-          <StackLogo />
-        </Button>
-      </Affix>
+        <div>
+          <p
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              paddingLeft: 24,
+              fontWeight: 500,
+              fontSize: 18,
+              lineHeight: '21px',
+              color: '#353535',
+            }}
+          >
+            <ClockMiniLogo
+              style={{
+                marginRight: 15,
+              }}
+            />
+            Недавние зоны
+          </p>
+          <ul
+            style={{
+              paddingLeft: 64,
+            }}
+          >
+            {recentZone.map((item, idx) => {
+              return (
+                <li
+                  style={{
+                    listStyle: 'none',
+                    color: '#9E9E9E',
+                    fontSize: 16,
+                    lineHeight: '19px',
+                    marginTop: 10,
+                  }}
+                  key={idx}
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <Divider />
+        <div>
+          <p
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              paddingLeft: 24,
+              fontWeight: 500,
+              fontSize: 18,
+              lineHeight: '21px',
+              color: '#353535',
+            }}
+          >
+            <BookmarkMiniLogo
+              style={{
+                marginRight: 15,
+              }}
+            />
+            Частые зоны
+          </p>
+          <ul
+            style={{
+              paddingLeft: 64,
+            }}
+          >
+            {recentZone.map((item, idx) => {
+              return (
+                <li
+                  style={{
+                    listStyle: 'none',
+                    color: '#9E9E9E',
+                    fontSize: 16,
+                    lineHeight: '19px',
+                    marginTop: 10,
+                  }}
+                  key={idx}
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <Divider />
+        <div>
+          <p
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              paddingLeft: 24,
+              fontWeight: 500,
+              fontSize: 18,
+              lineHeight: '21px',
+              color: '#353535',
+            }}
+          >
+            <StartMiniLogo
+              style={{
+                marginRight: 15,
+              }}
+            />
+            Частые зоны
+          </p>
+          <ul
+            style={{
+              paddingLeft: 56,
+            }}
+          >
+            {recentZone.map((item, idx) => {
+              return (
+                <li
+                  style={{
+                    listStyle: 'none',
+                    color: '#9E9E9E',
+                    fontSize: 16,
+                    lineHeight: '19px',
+                    marginTop: 10,
+                  }}
+                  key={idx}
+                >
+                  <StartMiniYellowLogo
+                    style={{
+                      marginRight: 8,
+                    }}
+                  />
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </Drawer>
     </>
   );
 }

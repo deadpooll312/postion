@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Form, Input, Button, Card, Modal } from 'antd';
 
-// import { authenticationService } from '../../services/authenticationService';
+import { authenticationService } from '../../services/authenticationService';
 
 import './index.css';
 import SwtichGroup from '../../components/SwtichGroup';
@@ -18,7 +18,12 @@ function Authorization(props) {
     }
   }, [props]);
 
-  const onFinish = ({ email, password }) => {
+  const onFinish = ({ login, password }) => {
+    // console.log(login, password);
+    // authenticationService.login(login, password).then((response) => {
+    //   console.log(response);
+    // });
+
     localStorage.setItem('isAuthenticated', true);
     props.signIn();
     props.history.push('/main');
