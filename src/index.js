@@ -16,3 +16,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+window.onbeforeunload = function () {
+  return false;
+};
