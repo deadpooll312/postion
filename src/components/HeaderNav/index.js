@@ -32,16 +32,16 @@ const { Header } = Layout;
 const data = [
   {
     title: '24141.4551054..666',
-    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.  ',
+    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.',
   },
   {
     title: '24141.4551054..',
-    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.  ',
+    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.',
   },
 ];
 
 const bellPopoverContent = (
-  <>
+  <div>
     <List
       itemLayout='vertical'
       dataSource={data}
@@ -49,6 +49,7 @@ const bellPopoverContent = (
         <List.Item key={idx}>
           <Card
             style={{
+              width: 400,
               borderRadius: 10,
               boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.1)',
             }}
@@ -78,7 +79,7 @@ const bellPopoverContent = (
     <Button type='link' style={{ display: 'block', margin: '0 auto' }}>
       Показать все
     </Button>
-  </>
+  </div>
 );
 
 const userTitle = (
@@ -119,32 +120,24 @@ function HeaderNav({ onOpen }) {
           }
           extra={[
             <div key='1'>
-              <Space>
+              <Space size={48}>
                 <SearchOutlined
                   style={{
                     color: '#fff',
                     fontSize: 28,
-                    marginRight: 48,
                     cursor: 'pointer',
                   }}
                 />
                 <Popover
-                  placement='bottom'
+                  placement='bottomRight'
                   content={bellPopoverContent}
                   trigger='hover'
                 >
-                  <Badge
-                    size='small'
-                    count={2}
-                    style={{
-                      marginRight: 48,
-                    }}
-                  >
+                  <Badge size='small' count={2}>
                     <BellFilled
                       style={{
                         color: '#FFB800',
                         fontSize: 28,
-                        marginRight: 48,
                         cursor: 'pointer',
                       }}
                     />
