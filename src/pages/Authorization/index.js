@@ -19,14 +19,13 @@ function Authorization(props) {
   }, [props]);
 
   const onFinish = ({ login, password }) => {
-    // console.log(login, password);
-    // authenticationService.login(login, password).then((response) => {
-    //   console.log(response);
-    // });
-
-    localStorage.setItem('isAuthenticated', true);
-    props.signIn();
-    props.history.push('/main');
+    console.log(login, password);
+    authenticationService.login(login, password).then((response) => {
+      localStorage.setItem('isAuthenticated', true);
+      props.signIn();
+      props.history.push('/main');
+      console.log(response);
+    });
 
     // props.showLoader();
     // authenticationService

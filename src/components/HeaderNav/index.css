@@ -31,3 +31,61 @@
   align-items: center !important;
   margin-right: 36px !important;
 }
+
+.content-wrapper {
+  padding: 20px 44px;
+}
+
+.content-item-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.content-item-wrapper:hover {
+  border-bottom: 0.5px solid #e0e0e0;
+}
+
+.content-item-wrapper__logo {
+  margin-right: 16px;
+}
+
+.content-item-wrapper__span {
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.user-title-wrapper {
+  display: flex;
+  padding: 20px;
+}
+
+.user-title__name-text {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000;
+}
+
+.user-title__position-text {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  color: #979797;
+}
+
+.header-menu-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25ace3;
+  padding: 25px;
+  cursor: pointer;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
