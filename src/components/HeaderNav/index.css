@@ -89,3 +89,8 @@
   align-items: center;
   width: 100%;
 }
+
+.bell-content-wrapper {
+  max-height: 85vh;
+  overflow-y: scroll;
+}
