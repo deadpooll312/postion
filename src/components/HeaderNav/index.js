@@ -1,48 +1,13 @@
-import React, { useState } from 'react';
-import {
-  Layout,
-  PageHeader,
-  Space,
-  Badge,
-  Popover,
-  Button,
-  Avatar,
-  Card,
-  List,
-  Modal,
-  Form,
-  Input,
-} from 'antd';
-import {
-  MenuOutlined,
-  UserOutlined,
-  SearchOutlined,
-  CloseOutlined,
-  BellFilled,
-  EditOutlined,
-} from '@ant-design/icons';
+import React from 'react';
+import { Layout, PageHeader, Space } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 
 import BellPopover from './BellPopover';
 import SettingsPopover from './SettingsPopover';
-
+import SearchPopover from './SearchPopover';
 import './index.css';
 
 const { Header } = Layout;
-
-const data = [
-  {
-    title: '24141.4551054..666',
-    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.',
-  },
-  {
-    title: '24141.4551054..',
-    text: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.',
-  },
-];
-
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
 
 function HeaderNav({ onOpen }) {
   return (
@@ -67,13 +32,7 @@ function HeaderNav({ onOpen }) {
           extra={[
             <div key='1'>
               <Space size={48}>
-                <SearchOutlined
-                  style={{
-                    color: '#fff',
-                    fontSize: 28,
-                    cursor: 'pointer',
-                  }}
-                />
+                <SearchPopover />
                 <BellPopover />
                 <SettingsPopover />
               </Space>

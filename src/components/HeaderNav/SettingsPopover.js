@@ -4,6 +4,7 @@ import { UserOutlined, EditOutlined } from '@ant-design/icons';
 
 import { ReactComponent as SettingAltLogo } from '../../assets/icons/settings-alt.svg';
 import { ReactComponent as LogoutLogo } from '../../assets/icons/logout.svg';
+import { ReactComponent as UserLogo } from '../../assets/icons/user.svg';
 
 import './index.css';
 
@@ -13,7 +14,7 @@ function SettingsPopover() {
 
   const userTitle = (
     <div className='user-title-wrapper'>
-      <Avatar size='large' icon={<UserOutlined />} />
+      <Avatar size='large' icon={<UserLogo />} />
       <p style={{ paddingLeft: 8 }}>
         <span className='user-title__name-text'>System</span>
         <br />
@@ -48,10 +49,8 @@ function SettingsPopover() {
         title={userTitle}
         trigger='hover'
       >
-        <UserOutlined
+        <UserLogo
           style={{
-            color: '#fff',
-            fontSize: 28,
             cursor: 'pointer',
           }}
         />

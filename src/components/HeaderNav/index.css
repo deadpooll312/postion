@@ -7,7 +7,6 @@
 
 .ant-page-header {
   padding: 0 !important;
-  /* height: 75px !important; */
   display: flex !important;
   align-items: center !important;
 }
@@ -93,4 +92,43 @@
 .bell-content-wrapper {
   max-height: 85vh;
   overflow-y: scroll;
+}
+
+.header-search-input .ant-input {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.header-search-input .ant-input-group-addon,
+.header-search-input .ant-btn {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+}
+
+.search-popover-wrapper {
+  display: flex;
+}
+
+.search-popover-item-left {
+  margin-right: 8px;
+  width: 40%;
+}
+
+.search-popover-item-right {
+  margin-left: 8px;
+}
+
+.search-popover-item-left p,
+.search-popover-item-right p {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.search-popover-item-right p {
+  color: #00a2e8;
+}
+
+.search-popover-item-left .ant-input,
+.search-popover-item-right .ant-input {
+  border-radius: 5px;
 }
