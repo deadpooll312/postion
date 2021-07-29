@@ -54,7 +54,7 @@ function Main() {
           color: '#25ACE3',
         }}
         contentWrapperStyle={{
-          width: '20%',
+          width: 350,
         }}
         title='Закладки'
         placement={'right'}

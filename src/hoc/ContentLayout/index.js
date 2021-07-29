@@ -29,7 +29,7 @@ function ContentLayout(props) {
       <Layout style={{ height: '100vh' }}>
         <Layout className='site-layout'>
           <Drawer
-            width={'20%'}
+            width={350}
             placement={'left'}
             onClose={() => {
               setVisible(false);
