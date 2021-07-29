@@ -4,3 +4,13 @@
   line-height: 21px;
   color: #25ace3;
 }
+
+.sos-search-input input {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.sos-search-input .ant-input-group-addon button {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
+}

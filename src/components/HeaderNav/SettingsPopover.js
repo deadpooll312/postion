@@ -14,7 +14,7 @@ function SettingsPopover() {
 
   const userTitle = (
     <div className='user-title-wrapper'>
-      <Avatar size='large' icon={<UserLogo />} />
+      <Avatar size='large' icon={<UserOutlined />} />
       <p style={{ paddingLeft: 8 }}>
         <span className='user-title__name-text'>System</span>
         <br />
