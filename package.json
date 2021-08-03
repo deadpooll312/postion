@@ -43,5 +43,5 @@
     ]
   },
   "devDependencies": {},
-  "proxy": "http://localhost:5001"
+  "proxy": "http://0.0.0.0:5001"
 }
