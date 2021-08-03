@@ -40,7 +40,12 @@ function SettingsPopover() {
               <SettingAltLogo className='content-item-wrapper__logo' />
               <span className='content-item-wrapper__span'>Настройки</span>
             </p>
-            <p className='content-item-wrapper'>
+            <p
+              className='content-item-wrapper'
+              onClick={() => {
+                console.log('cookie', document.cookie);
+              }}
+            >
               <LogoutLogo className='content-item-wrapper__logo' />
               <span className='content-item-wrapper__span'>Выйти</span>
             </p>

@@ -1,4 +1,5 @@
-import client from './client';
+import axios from 'axios';
+// import client from './client';
 
 export const authenticationService = {
   login,
@@ -7,7 +8,7 @@ export const authenticationService = {
 };
 
 function login(username, password) {
-  return client
+  return axios
     .post('/auth', {
       auth: {
         username,
@@ -23,7 +24,7 @@ function login(username, password) {
 function logout() {}
 
 function api() {
-  return client.get('/v0.1/maps').then((response) => {
+  return axios.get('/v0.1/maps').then((response) => {
     console.log('api', response);
   });
 }
