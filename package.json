@@ -43,5 +43,5 @@
     ]
   },
   "devDependencies": {},
-  "proxy": "http://0.0.0.0:5001"
+  "proxy": "http://95.217.234.248:5001"
 }
