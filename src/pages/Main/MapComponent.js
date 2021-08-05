@@ -1,13 +1,14 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
 import { Context } from '../../context';
 import { Map, TileLayer, ImageOverlay, GeoJSON } from 'react-leaflet';
-import pic from '../../assets/layers/pic-2.svg';
+import pic from '../../assets/layers/pic-3.svg';
+
 import mapData from './countries.json';
 
 import './index.css';
 const position = [52.9435, 62.1415];
 
-function MapComponent(props) {
+function MapComponent() {
   const [color, setColor] = useState(null);
   const leafFletMap = useRef();
   const { mapColor } = useContext(Context);
