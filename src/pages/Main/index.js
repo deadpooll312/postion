@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MapComponent from './MapComponent';
 import Buttons from './Buttons';
 import { Drawer, Divider } from 'antd';
@@ -9,7 +9,6 @@ import { ReactComponent as StartMiniLogo } from '../../assets/icons/star-mini.sv
 import { ReactComponent as StartMiniYellowLogo } from '../../assets/icons/star-mini-yellow.svg';
 
 import './index.css';
-import { authenticationService } from '../../services/authenticationService';
 
 const recentZone = [
   'Корпус ЗИиОФ 0',
@@ -35,9 +34,6 @@ const importantZone = [
 
 function Main() {
   const [visibleBook, setVisibleBook] = useState(false);
-  useEffect(() => {
-    authenticationService.api();
-  }, []);
   return (
     <>
       <MapComponent />

@@ -9,7 +9,7 @@ import { ReactComponent as DashboardLogo } from '../../assets/icons/dashboard.sv
 import { ReactComponent as MapLocationLogo } from '../../assets/icons/map-location.svg';
 import { ReactComponent as SettingsLogo } from '../../assets/icons/settings.svg';
 
-const { Sider, Content, Header } = Layout;
+const { Content } = Layout;
 
 function ContentLayout(props) {
   const { isAuthenticated } = props;
@@ -37,14 +37,7 @@ function ContentLayout(props) {
             visible={visible}
             key={'left'}
             footer={
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: 36,
-                }}
-              >
+              <div className='d-flex-center-center mb-38'>
                 <SwtichGroup
                   list={[
                     { id: 0, title: 'KZ' },
@@ -66,13 +59,7 @@ function ContentLayout(props) {
                 padding: '32px 64px 0px',
               }}
             >
-              <p
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <p className='d-flex-center-center'>
                 <MapLocationLogo
                   style={{
                     flex: '1 1 30%',
@@ -86,13 +73,7 @@ function ContentLayout(props) {
                   Карты
                 </span>
               </p>
-              <p
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <p className='d-flex-center-center'>
                 <DashboardLogo
                   style={{
                     flex: '1 1 30%',
@@ -106,13 +87,7 @@ function ContentLayout(props) {
                   Дэшборды
                 </span>
               </p>
-              <p
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <p className='d-flex-center-center'>
                 <DocumentLogo
                   style={{
                     flex: '1 1 30%',
@@ -127,13 +102,7 @@ function ContentLayout(props) {
                 </span>
               </p>
               <Divider />
-              <p
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+              <p className='d-flex-center-center'>
                 <SettingsLogo
                   style={{
                     flex: '1 1 30%',
@@ -154,15 +123,7 @@ function ContentLayout(props) {
               setVisible(true);
             }}
           />
-          <Content
-            style={
-              {
-                // minHeight: 280,
-              }
-            }
-          >
-            {props.children}
-          </Content>
+          <Content>{props.children}</Content>
         </Layout>
       </Layout>
     </>

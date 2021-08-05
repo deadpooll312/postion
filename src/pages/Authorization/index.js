@@ -19,26 +19,11 @@ function Authorization(props) {
   }, [props]);
 
   const onFinish = ({ login, password }) => {
-    console.log(login, password);
-    authenticationService.login(login, password).then((response) => {
+    authenticationService.login(login, password).then(() => {
       localStorage.setItem('isAuthenticated', true);
       props.signIn();
       props.history.push('/main');
-      console.log(response);
     });
-
-    // props.showLoader();
-    // authenticationService
-    //   .login(email, password)
-    //   .then((response) => {})
-    //   .then(() => {
-    //     props.hideLoader();
-    //     props.signIn();
-    //     props.history.push('/main');
-    //   })
-    //   .catch(() => {
-    //     props.hideLoader();
-    //   });
   };
 
   return (
@@ -137,8 +122,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     signIn: () => dispatch({ type: 'SIGN_IN' }),
-    // showLoader: () => dispatch({ type: 'SHOW_LOADER' }),
-    // hideLoader: () => dispatch({ type: 'HIDE_LOADER' }),
   };
 }
 

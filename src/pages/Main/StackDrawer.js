@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Context } from '../../context';
 import { Affix, Button, Drawer, Divider, Checkbox } from 'antd';
 import { ReactComponent as StackLogo } from '../../assets/icons/stack.svg';
 import { ReactComponent as SettingWrenchLogo } from '../../assets/icons/interface-setting-wrench.svg';
@@ -18,6 +19,7 @@ import { ReactComponent as PriceTagLogo } from '../../assets/icons/price-tag.svg
 
 function StackDrawer() {
   const [visible, setVisible] = useState(false);
+  const { changeMapColor } = useContext(Context);
   const elementsList = [
     {
       text: 'Сотрудники',
@@ -65,7 +67,32 @@ function StackDrawer() {
           <div className='logos-wrapper'>
             <ToolLogo />
             <GridLogo />
-            <ChangeColorLogo />
+            <div
+              style={{
+                position: 'relative',
+              }}
+            >
+              <input
+                style={{
+                  cursor: 'pointer',
+                  opacity: 0,
+                  position: 'absolute',
+                  width: '100%',
+                  minHeight: '100%',
+                  zIndex: 0,
+                }}
+                type='color'
+                onChange={(e) => {
+                  changeMapColor(e?.target?.value);
+                }}
+              />
+              <ChangeColorLogo
+                style={{
+                  cursor: 'pointer',
+                  zIndex: 999,
+                }}
+              />
+            </div>
           </div>
           <Divider />
           <p className='stack-drawer-sub-title'>

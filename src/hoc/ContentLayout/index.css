@@ -1,0 +1,9 @@
+.d-flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mb-38 {
+  margin-bottom: 36px;
+}

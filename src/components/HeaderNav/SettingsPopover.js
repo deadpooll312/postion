@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Popover, Button, Avatar, Modal, Form, Input } from 'antd';
 import { UserOutlined, EditOutlined } from '@ant-design/icons';
 
@@ -6,9 +8,11 @@ import { ReactComponent as SettingAltLogo } from '../../assets/icons/settings-al
 import { ReactComponent as LogoutLogo } from '../../assets/icons/logout.svg';
 import { ReactComponent as UserLogo } from '../../assets/icons/user.svg';
 
+import { authenticationService } from '../../services/authenticationService';
+
 import './index.css';
 
-function SettingsPopover() {
+function SettingsPopover({ history, signOut }) {
   const [visible, setVisible] = useState(false);
   const [edit, setEdit] = useState(false);
 
@@ -24,6 +28,13 @@ function SettingsPopover() {
       </p>
     </div>
   );
+
+  function logout() {
+    authenticationService.logout().then(() => {
+      localStorage.removeItem('isAuthenticated');
+      signOut();
+    });
+  }
 
   return (
     <>
@@ -43,7 +54,7 @@ function SettingsPopover() {
             <p
               className='content-item-wrapper'
               onClick={() => {
-                console.log('cookie', document.cookie);
+                logout();
               }}
             >
               <LogoutLogo className='content-item-wrapper__logo' />
@@ -177,4 +188,10 @@ function SettingsPopover() {
   );
 }
 
-export default SettingsPopover;
+function mapDispatchToProps(dispatch) {
+  return {
+    signOut: () => dispatch({ type: 'SIGN_OUT' }),
+  };
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(SettingsPopover));
