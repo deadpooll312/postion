@@ -29,13 +29,16 @@ function MapComponent() {
       >
         {color && (
           <GeoJSON
-            style={{
-              fillColor: '#1c2905',
-              fillOpacity: '0.2',
+            style={() => {
+              return {
+                fillColor: color,
+                fillOpacity: '0.2',
+              };
             }}
             data={mapData.features}
           />
         )}
+
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
