@@ -17,11 +17,8 @@ client.interceptors.response.use(
 
     if (error.response.status === 401) {
       clearAuth();
-    } else {
-      return new Promise((resolve, reject) => {
-        reject(error);
-      });
     }
+    return Promise.reject(error);
   }
 );
 

@@ -19,9 +19,14 @@ function Authorization(props) {
   }, [props]);
 
   const onFinish = ({ login, password }) => {
-    authenticationService.login(login, password).then(() => {
-      props.history.push('/main');
-    });
+    authenticationService
+      .login(login, password)
+      .then(() => {
+        props.history.push('/main');
+      })
+      .catch((error) => {
+        setErrorText(true);
+      });
   };
 
   return (
@@ -50,7 +55,7 @@ function Authorization(props) {
       </Modal>
       <Card
         bordered={false}
-        style={{ width: '35%', padding: '0' }}
+        style={{ width: 500, padding: '0' }}
         className='auth-container__form-wrapper'
       >
         <div className='auth-container__logo'></div>
