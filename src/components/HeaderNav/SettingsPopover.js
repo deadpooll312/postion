@@ -30,10 +30,7 @@ function SettingsPopover({ history, signOut }) {
   );
 
   function logout() {
-    authenticationService.logout().then(() => {
-      localStorage.removeItem('isAuthenticated');
-      signOut();
-    });
+    authenticationService.logout();
   }
 
   return (

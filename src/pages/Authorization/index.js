@@ -20,8 +20,6 @@ function Authorization(props) {
 
   const onFinish = ({ login, password }) => {
     authenticationService.login(login, password).then(() => {
-      localStorage.setItem('isAuthenticated', true);
-      props.signIn();
       props.history.push('/main');
     });
   };
