@@ -14,7 +14,7 @@ function Authorization(props) {
 
   useEffect(() => {
     if (props.isAuthenticated) {
-      props.history.push('/main');
+      props.history.push('/');
     }
   }, [props]);
 
@@ -22,7 +22,7 @@ function Authorization(props) {
     authenticationService
       .login(login, password)
       .then(() => {
-        props.history.push('/main');
+        props.history.push('/');
       })
       .catch((error) => {
         setErrorText(true);

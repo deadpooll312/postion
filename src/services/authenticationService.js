@@ -17,7 +17,6 @@ function login(username, password) {
       '/auth',
       {},
       {
-        headers,
         auth: {
           username,
           password,
@@ -30,15 +29,7 @@ function login(username, password) {
 }
 
 function logout() {
-  return client
-    .post(
-      '/logout',
-      {},
-      {
-        headers,
-      }
-    )
-    .then(() => {
-      clearAuth();
-    });
+  return client.post('/logout').then(() => {
+    clearAuth();
+  });
 }

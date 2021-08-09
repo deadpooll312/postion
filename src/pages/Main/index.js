@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import keepers from '../../services/keepers';
 import MapComponent from './MapComponent';
+import CRSComponent from './CRSComponent';
 import Buttons from './Buttons';
 import { Drawer, Divider } from 'antd';
 
@@ -34,9 +36,13 @@ const importantZone = [
 
 function Main() {
   const [visibleBook, setVisibleBook] = useState(false);
+  useEffect(() => {
+    keepers.get();
+  }, []);
   return (
     <>
-      <MapComponent />
+      <CRSComponent />
+      {/* <MapComponent /> */}
       <Buttons
         showBook={() => {
           setVisibleBook(true);

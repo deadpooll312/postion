@@ -20,8 +20,8 @@ function App(props) {
     <Context.Provider value={{ mapColor, changeMapColor }}>
       <ContentLayout isAuthenticated={props.isAuthenticated}>
         <Switch>
-          <Route path='/' component={Authorization} exact />
-          <PrivateRoute path='/main' component={Main} />
+          <Route path='/login' component={Authorization} exact />
+          <PrivateRoute path='/' component={Main} exact />
         </Switch>
       </ContentLayout>
     </Context.Provider>

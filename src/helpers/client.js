@@ -1,7 +1,11 @@
 import axios from 'axios';
 import clearAuth from './clearAuth';
 
-const client = axios.create();
+const client = axios.create({
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+  },
+});
 
 client.interceptors.response.use(
   (response) =>

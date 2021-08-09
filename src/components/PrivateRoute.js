@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const PrivateRoute = ({
   component: Component,
   isAuthenticated,
-  fallback = '/',
+  fallback = '/login',
   ...rest
 }) => {
   return (
