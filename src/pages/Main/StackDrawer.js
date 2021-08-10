@@ -7,15 +7,13 @@ import { ReactComponent as ToolLogo } from '../../assets/icons/tool.svg';
 import { ReactComponent as GridLogo } from '../../assets/icons/grid.svg';
 import { ReactComponent as ChangeColorLogo } from '../../assets/icons/color-change.svg';
 import { ReactComponent as MapTypeLogo } from '../../assets/icons/map-type.svg';
-import { ReactComponent as MapLogo } from '../../assets/icons/map.svg';
-import { ReactComponent as BuildingLogo } from '../../assets/icons/building.svg';
-import { ReactComponent as PlanLogo } from '../../assets/icons/plan.svg';
 import { ReactComponent as ElementsLogo } from '../../assets/icons/elements.svg';
 import { ReactComponent as UserGrayLogo } from '../../assets/icons/user-gray.svg';
 import { ReactComponent as ObjectLogo } from '../../assets/icons/object.svg';
 import { ReactComponent as MapLocationLogo } from '../../assets/icons/map-location-logo.svg';
 import { ReactComponent as ShoppingBagLogo } from '../../assets/icons/shopping-bag.svg';
 import { ReactComponent as PriceTagLogo } from '../../assets/icons/price-tag.svg';
+import MapTypes from './MapTypes';
 
 function StackDrawer() {
   const [visible, setVisible] = useState(false);
@@ -99,11 +97,7 @@ function StackDrawer() {
             <MapTypeLogo />
             <span>Тип карты</span>
           </p>
-          <div className='logos-wrapper'>
-            <MapLogo />
-            <BuildingLogo />
-            <PlanLogo />
-          </div>
+          <MapTypes />
           <Divider />
           <p className='stack-drawer-sub-title'>
             <ElementsLogo />

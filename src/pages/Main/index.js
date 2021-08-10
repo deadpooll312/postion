@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import keepers from '../../services/keepers';
 import MapComponent from './MapComponent';
 import CRSComponent from './CRSComponent';
@@ -34,15 +35,27 @@ const importantZone = [
   'Корпус ЗИиОФ 11.2',
 ];
 
-function Main() {
+function Main({ mapType }) {
   const [visibleBook, setVisibleBook] = useState(false);
   useEffect(() => {
     keepers.get();
   }, []);
+
+  function mapRender(mapType) {
+    switch (mapType) {
+      case 'MAP':
+        return <MapComponent />;
+      case 'BUILDING':
+        return <>BUILDING</>;
+      case 'PLAN':
+        return <CRSComponent />;
+      default:
+        return <MapComponent />;
+    }
+  }
   return (
     <>
-      <CRSComponent />
-      {/* <MapComponent /> */}
+      {mapRender(mapType)}
       <Buttons
         showBook={() => {
           setVisibleBook(true);
@@ -205,4 +218,10 @@ function Main() {
   );
 }
 
-export default Main;
+function mapStateToProps(state) {
+  return {
+    mapType: state.mapType.mapType,
+  };
+}
+
+export default connect(mapStateToProps)(Main);
