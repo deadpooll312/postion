@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Popover, Button, Avatar, Modal, Form, Input } from 'antd';
@@ -9,12 +9,19 @@ import { ReactComponent as LogoutLogo } from '../../assets/icons/logout.svg';
 import { ReactComponent as UserLogo } from '../../assets/icons/user.svg';
 
 import { authenticationService } from '../../services/authenticationService';
+import user from '../../services/user';
 
 import './index.css';
 
 function SettingsPopover({ history, signOut }) {
   const [visible, setVisible] = useState(false);
   const [edit, setEdit] = useState(false);
+
+  useEffect(() => {
+    user.getData('system').then((response) => {
+      console.log(response);
+    });
+  }, []);
 
   const userTitle = (
     <div className='user-title-wrapper'>
