@@ -8,7 +8,7 @@ import { ReactComponent as ClockLogo } from '../../assets/icons/clock.svg';
 
 import './index.css';
 
-function IconsGroup() {
+function IconsGroup({ onShowSosModal }) {
   const logos = [
     {
       id: 1,
@@ -20,7 +20,13 @@ function IconsGroup() {
     },
     {
       id: 3,
-      icon: <SosLogo />,
+      icon: (
+        <SosLogo
+          onClick={() => {
+            onShowSosModal();
+          }}
+        />
+      ),
     },
     {
       id: 4,

@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Context } from '../../context';
-import { Avatar, Drawer, Divider, Checkbox } from 'antd';
+import React, { useState } from 'react';
+import { Avatar, Drawer, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 import { ReactComponent as PlanLogo } from '../../assets/icons/plane.svg';
 import { ReactComponent as TemperatureLogo } from '../../assets/icons/temperature.svg';
 import { ReactComponent as WarningLogo } from '../../assets/icons/warning-triangle.svg';
 import { ReactComponent as BrowserSafariLogo } from '../../assets/icons/browser-safari.svg';
-
 import { ReactComponent as DashboardLogo } from '../../assets/icons/dashboard.svg';
 import { ReactComponent as CelsiusLogo } from '../../assets/icons/celsius.svg';
 import { ReactComponent as SignalGraphLogo } from '../../assets/icons/signal-graph.svg';
@@ -15,10 +13,10 @@ import { ReactComponent as StepsLogo } from '../../assets/icons/steps.svg';
 import { ReactComponent as BatteryLogo } from '../../assets/icons/battery.svg';
 
 import IconsGroup from './IconsGroup';
+import ModalComponent from './ModalComponent';
 
 function UserDrawer({ visible, onClose }) {
-  //   const [visible, setVisible] = useState(false);
-  const { changeMapColor } = useContext(Context);
+  const [sosVisible, setSosVisible] = useState(false);
   const elementsList = [
     {
       text: 'Движение',
@@ -67,18 +65,19 @@ function UserDrawer({ visible, onClose }) {
     },
   ];
 
-  //   useEffect(() => {
-  //     visible
-  //   })
-
   return (
     <>
+      <ModalComponent
+        sosVisible={sosVisible}
+        onCloseSos={() => {
+          setSosVisible(false);
+        }}
+      />
       <Drawer
         placement='left'
         closable={true}
         onClose={() => {
           onClose();
-          //   setVisible(false);
         }}
         visible={visible}
         width={350}
@@ -103,7 +102,12 @@ function UserDrawer({ visible, onClose }) {
             <span>Батарея:</span> <span className='green'>Полная</span>
           </p>
           <Divider />
-          <IconsGroup />
+          <IconsGroup
+            onShowSosModal={() => {
+              setSosVisible(true);
+              onClose();
+            }}
+          />
           <Divider />
           {elementsList.map((item, idx) => {
             return (

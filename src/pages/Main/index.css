@@ -80,3 +80,40 @@
 .element-wrapper .ant-checkbox-wrapper {
   margin-right: 24px;
 }
+
+.sos-modal-title {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+  color: #d82626;
+}
+
+.sos-modal-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #979797;
+}
+
+.sos-modal-send-btn,
+.sos-modal-cancel-btn {
+  font-weight: 900 !important;
+  font-size: 18px !important;
+  line-height: 21px !important;
+  text-align: center !important;
+  color: #ffffff !important;
+  border-radius: 5px !important;
+  padding: 14px !important;
+  height: auto !important;
+  width: 45% !important;
+}
+
+.sos-modal-send-btn {
+  background: #d82626 !important;
+}
+
+.sos-modal-cancel-btn {
+  background: #979797 !important;
+}
