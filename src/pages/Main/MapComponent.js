@@ -144,6 +144,7 @@ function MapComponent() {
                 description={
                   <>
                     <p
+                      className='d-flex-sb'
                       style={{
                         padding: 0,
                         margin: 0,
@@ -152,16 +153,10 @@ function MapComponent() {
                         color: '#000000',
                       }}
                     >
-                      Табельный номер:{' '}
-                      <span
-                        style={{
-                          color: '#598B36',
-                        }}
-                      >
-                        №45123345
-                      </span>
+                      Табельный номер: <span className='green'>№45123345</span>
                     </p>
                     <p
+                      className='d-flex-sb'
                       style={{
                         padding: 0,
                         margin: 0,
@@ -170,14 +165,7 @@ function MapComponent() {
                         color: '#000000',
                       }}
                     >
-                      должность:{' '}
-                      <span
-                        style={{
-                          color: '#598B36',
-                        }}
-                      >
-                        Сварщик
-                      </span>
+                      Должность: <span className='green'>Сварщик</span>
                     </p>
                   </>
                 }

@@ -48,15 +48,26 @@
   cursor: pointer;
 }
 
-.element-wrapper {
+.element-wrapper,
+.data-wrapper {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   margin-top: 26px;
 }
 
-.element-wrapper svg {
-  flex: 1 0 10%;
+.element-wrapper svg,
+.data-wrapper svg {
+  flex: 1 0 15%;
+}
+
+.data-text {
+  flex: 1 0 55%;
+}
+
+.data-value {
+  flex: 1 0 30%;
+  text-align: right;
 }
 
 .element-wrapper span {

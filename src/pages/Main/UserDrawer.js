@@ -1,19 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../../context';
-import { Affix, Button, Drawer, Divider, Checkbox } from 'antd';
-import { ReactComponent as StackLogo } from '../../assets/icons/stack.svg';
-import { ReactComponent as SettingWrenchLogo } from '../../assets/icons/interface-setting-wrench.svg';
-import { ReactComponent as ToolLogo } from '../../assets/icons/tool.svg';
-import { ReactComponent as GridLogo } from '../../assets/icons/grid.svg';
-import { ReactComponent as ChangeColorLogo } from '../../assets/icons/color-change.svg';
-import { ReactComponent as MapTypeLogo } from '../../assets/icons/map-type.svg';
-import { ReactComponent as ElementsLogo } from '../../assets/icons/elements.svg';
-import { ReactComponent as UserGrayLogo } from '../../assets/icons/user-gray.svg';
-import { ReactComponent as ObjectLogo } from '../../assets/icons/object.svg';
-import { ReactComponent as MapLocationLogo } from '../../assets/icons/map-location-logo.svg';
-import { ReactComponent as ShoppingBagLogo } from '../../assets/icons/shopping-bag.svg';
-import { ReactComponent as PriceTagLogo } from '../../assets/icons/price-tag.svg';
-import MapTypes from './MapTypes';
+import { Avatar, Drawer, Divider, Checkbox } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
+import { ReactComponent as PlanLogo } from '../../assets/icons/plane.svg';
+import { ReactComponent as TemperatureLogo } from '../../assets/icons/temperature.svg';
+import { ReactComponent as WarningLogo } from '../../assets/icons/warning-triangle.svg';
+import { ReactComponent as BrowserSafariLogo } from '../../assets/icons/browser-safari.svg';
+
+import { ReactComponent as DashboardLogo } from '../../assets/icons/dashboard.svg';
+import { ReactComponent as CelsiusLogo } from '../../assets/icons/celsius.svg';
+import { ReactComponent as SignalGraphLogo } from '../../assets/icons/signal-graph.svg';
+import { ReactComponent as StepsLogo } from '../../assets/icons/steps.svg';
+import { ReactComponent as BatteryLogo } from '../../assets/icons/battery.svg';
+
+import IconsGroup from './IconsGroup';
 
 function UserDrawer({ visible, onClose }) {
   //   const [visible, setVisible] = useState(false);
@@ -21,35 +22,48 @@ function UserDrawer({ visible, onClose }) {
   const elementsList = [
     {
       text: 'Движение',
-      logo: <UserGrayLogo />,
+      logo: <PlanLogo />,
+      value: 'Подвижность',
     },
     {
       text: 'Температура',
-      logo: <ObjectLogo />,
+      logo: <TemperatureLogo />,
+      value: 7,
+    },
+    {
+      text: 'Падение/удар',
+      logo: <WarningLogo />,
+      value: 'Normal',
     },
     {
       text: 'Положение',
-      logo: <MapLocationLogo />,
+      logo: <BrowserSafariLogo />,
+      value: 'YH',
     },
     {
       text: 'Барометр',
-      logo: <ShoppingBagLogo />,
+      logo: <DashboardLogo />,
+      value: -4568,
     },
     {
       text: 'Температура барометра',
-      logo: <PriceTagLogo />,
+      logo: <CelsiusLogo />,
+      value: 11,
     },
     {
       text: 'Пульс (браслет)',
-      logo: <PriceTagLogo />,
+      logo: <SignalGraphLogo />,
+      value: 82,
     },
     {
       text: 'Шагомер (браслет)',
-      logo: <PriceTagLogo />,
+      logo: <StepsLogo />,
+      value: 1222,
     },
     {
       text: 'Батарея (браслет)',
-      logo: <PriceTagLogo />,
+      logo: <BatteryLogo />,
+      value: '50%',
     },
   ];
 
@@ -74,57 +88,31 @@ function UserDrawer({ visible, onClose }) {
             marginTop: 36,
           }}
         >
-          <p className='stack-drawer-title'>Сергеев Сергей Сергеевич</p>
-          <p>Табельный номер: №45123345</p>
-          <p>должность: Сварщик</p>
-          <p>Батарея: Полная</p>
-          {/* <div className='logos-wrapper'>
-            <ToolLogo />
-            <GridLogo />
-            <div
-              style={{
-                position: 'relative',
-              }}
-            >
-              <input
-                style={{
-                  cursor: 'pointer',
-                  opacity: 0,
-                  position: 'absolute',
-                  width: '100%',
-                  minHeight: '100%',
-                  zIndex: 0,
-                }}
-                type='color'
-                onChange={(e) => {
-                  changeMapColor(e?.target?.value);
-                }}
-              />
-              <ChangeColorLogo
-                style={{
-                  cursor: 'pointer',
-                  zIndex: 999,
-                }}
-              />
-            </div>
-          </div> */}
+          <div className='d-flex-center-center'>
+            <Avatar size='large' icon={<UserOutlined />} />
+          </div>
+          <p className='stack-drawer-title mt-20'>Сергеев Сергей Сергеевич</p>
+          <p className='d-flex-sb'>
+            <span>Табельный номер:</span>
+            <span className='green'>№45123345</span>
+          </p>
+          <p className='d-flex-sb'>
+            <span>Должность:</span> <span className='green'>Сварщик</span>
+          </p>
+          <p className='d-flex-sb'>
+            <span>Батарея:</span> <span className='green'>Полная</span>
+          </p>
           <Divider />
-          {/* <p className='stack-drawer-sub-title'>
-            <MapTypeLogo />
-            <span>Тип карты</span>
-          </p> */}
-          <MapTypes />
+          <IconsGroup />
           <Divider />
-          {/* <p className='stack-drawer-sub-title'>
-            <ElementsLogo />
-            <span>Элементы</span>
-          </p> */}
           {elementsList.map((item, idx) => {
             return (
-              <div key={idx} className={'element-wrapper'}>
+              <div key={idx} className={'data-wrapper'}>
                 {item.logo}
-                <span>{item.text}</span>
-                {/* <Checkbox /> */}
+                <span className='data-text' style={{ color: '#373737' }}>
+                  {item.text}
+                </span>
+                <span className='data-value green'>{item.value}</span>
               </div>
             );
           })}

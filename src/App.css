@@ -5,3 +5,16 @@
   align-items: center;
   justify-content: center;
 }
+
+.d-flex-sb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.green {
+  color: #598b36;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
