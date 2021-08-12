@@ -28,7 +28,7 @@ function ModalComponent({ sosVisible, onCloseSos }) {
         <Button
           className='sos-modal-cancel-btn'
           onClick={() => {
-            //   setVisible(false);
+            onCloseSos();
           }}
         >
           Отмена

@@ -117,3 +117,18 @@
 .sos-modal-cancel-btn {
   background: #979797 !important;
 }
+
+.blue-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #25ace3;
+}
+
+.history-sub-title {
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #373737;
+}
