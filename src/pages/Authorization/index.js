@@ -22,7 +22,7 @@ function Authorization(props) {
     authenticationService
       .login(login, password)
       .then(() => {
-        props.history.push('/');
+        props.history.push('/upload/map');
       })
       .catch((error) => {
         setErrorText(true);
