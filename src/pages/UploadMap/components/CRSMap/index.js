@@ -1,26 +1,21 @@
-import React from 'react';
-import { ImageOverlay, Map } from 'react-leaflet';
-import { CRS } from 'leaflet';
+import React, { useEffect, useState } from 'react';
 
 import './index.scss';
 
+import { initMap } from '../../../../helpers/mapHelpers';
+
 const CRSMap = ({ image }) => {
+  const mapId = 'map';
+
+  const [map, setMap] = useState();
+
+  useEffect(() => {
+    if (!map) setMap(initMap({ mapId, image }));
+  }, []);
+
   return (
     <div className="map-wrapper">
-      <Map
-        style={{ height: '100%' }}
-        center={[230, 50]}
-        zoom={1}
-        crs={CRS.Simple}
-      >
-        <ImageOverlay
-          url={image}
-          bounds={[
-            [0, 0],
-            [468.45, 100],
-          ]}
-        />
-      </Map>
+      <div id="map" />
     </div>
   );
 };

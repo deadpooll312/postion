@@ -10,7 +10,7 @@ const UploadMap = () => {
 
   return (
     <div className="content">
-      <SideBar setImage={setImage} />
+      <SideBar setImage={setImage} image={image} />
       <div className="content-page">
         {image ? (
           <CRSMap image={image} />
