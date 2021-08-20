@@ -128,7 +128,7 @@ function MapComponent() {
             >
               <Meta
                 avatar={
-                  <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
+                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                 }
                 title={
                   <span
@@ -144,7 +144,7 @@ function MapComponent() {
                 description={
                   <>
                     <p
-                      className='d-flex-sb'
+                      className="d-flex-sb"
                       style={{
                         padding: 0,
                         margin: 0,
@@ -153,10 +153,10 @@ function MapComponent() {
                         color: '#000000',
                       }}
                     >
-                      Табельный номер: <span className='green'>№45123345</span>
+                      Табельный номер: <span className="green">№45123345</span>
                     </p>
                     <p
-                      className='d-flex-sb'
+                      className="d-flex-sb"
                       style={{
                         padding: 0,
                         margin: 0,
@@ -165,7 +165,7 @@ function MapComponent() {
                         color: '#000000',
                       }}
                     >
-                      Должность: <span className='green'>Сварщик</span>
+                      Должность: <span className="green">Сварщик</span>
                     </p>
                   </>
                 }
@@ -176,7 +176,7 @@ function MapComponent() {
 
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxNativeZoom={19}
           minZoom={0}
           maxZoom={22}

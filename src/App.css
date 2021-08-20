@@ -1,20 +1,24 @@
 @import '~antd/dist/antd.css';
 
 .d-flex-center-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .d-flex-sb {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .green {
-  color: #598b36;
+    color: #598b36;
 }
 
 .mt-20 {
-  margin-top: 20px;
+    margin-top: 20px;
+}
+
+.d-none {
+    display: none;
 }

@@ -6,6 +6,7 @@ import ContentLayout from './hoc/ContentLayout';
 import PrivateRoute from './components/PrivateRoute';
 import Authorization from './pages/Authorization';
 import Main from './pages/Main';
+import UploadMap from './pages/UploadMap';
 import { Context } from './context';
 import './App.css';
 
@@ -20,8 +21,9 @@ function App(props) {
     <Context.Provider value={{ mapColor, changeMapColor }}>
       <ContentLayout isAuthenticated={props.isAuthenticated}>
         <Switch>
-          <Route path='/login' component={Authorization} exact />
-          <PrivateRoute path='/' component={Main} exact />
+          <Route path="/login" component={Authorization} exact />
+          <PrivateRoute path="/" component={Main} exact />
+          <PrivateRoute path="/upload/map" component={UploadMap} exact />
         </Switch>
       </ContentLayout>
     </Context.Provider>
