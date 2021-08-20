@@ -7,49 +7,97 @@ import {
   addPolyLine,
   initMap,
 } from '../../../../helpers/mapHelpers';
+import { getBounds } from '../../../../helpers/getters';
 
-import svgImage from '../../../../assets/layers/pic-2.svg';
+const CRSMap = (props) => {
+  const {
+    image,
+    bounds,
+    pointA,
+    pointL0,
+    pointL1,
+    setBounds,
+    setPointA,
+    setPointL0,
+    setPointL1,
+  } = props;
 
-const CRSMap = ({ image }) => {
   const mapId = 'map';
 
   const [map, setMap] = useState();
+
   const [markerA, setMarkerA] = useState();
-  const [markerB, setMarkerB] = useState();
-  const [pointA, setPointA] = useState([150, 0]);
-  const [pointB, setPointB] = useState([150, 100]);
+  const [markerL0, setMarkerL0] = useState();
+  const [markerL1, setMarkerL1] = useState();
+
   const [line, setLine] = useState();
 
+  const initBounds = () => {
+    const img = new Image();
+    img.src = image;
+
+    img.onload = function () {
+      setBounds(getBounds(this.width, this.height));
+    };
+  };
+
+  const initPoints = () => {
+    const [{ lat: y0, lng: x0 }, { lat: y1, lng: x1 }] = bounds;
+    const midY = (y0 + y1) / 2;
+    setPointL0({ lat: midY, lng: x0 });
+    setPointL1({ lat: midY, lng: x1 });
+  };
+
+  const setLayers = () => {
+    setMarkerA(
+      addMarker({
+        map,
+        latLng: pointA,
+        draggable: true,
+        setPosition: setPointA,
+      })
+    );
+    setMarkerL0(
+      addMarker({
+        map,
+        latLng: pointL0,
+        draggable: true,
+        setPosition: setPointL0,
+      })
+    );
+    setMarkerL1(
+      addMarker({
+        map,
+        latLng: pointL1,
+        draggable: true,
+        setPosition: setPointL1,
+      })
+    );
+  };
+
   useEffect(() => {
-    if (!map) setMap(initMap({ mapId, image }));
-    else {
-      setMarkerA(
-        addMarker({
-          map,
-          latLng: pointA,
-          draggable: true,
-          setPosition: setPointA,
-        })
-      );
-      setMarkerB(
-        addMarker({
-          map,
-          latLng: pointB,
-          draggable: true,
-          setPosition: setPointB,
-        })
-      );
-      setLine(addPolyLine({ map, latLngs: [pointA, pointB] }));
+    initBounds();
+  }, []);
+
+  useEffect(() => {
+    if (bounds) {
+      initPoints();
+      if (!map && bounds) setMap(initMap({ mapId, image, bounds }));
+    }
+  }, [bounds]);
+
+  useEffect(() => {
+    if (map) {
+      setLayers();
     }
   }, [map]);
 
   useEffect(() => {
     if (map) {
-      line.remove();
-
-      setLine(addPolyLine({ map, latLngs: [pointA, pointB] }));
+      if (line) line.remove();
+      setLine(addPolyLine({ map, latLngs: [pointL0, pointL1] }));
     }
-  }, [pointA, pointB]);
+  }, [pointL0, pointL1]);
 
   return (
     <div className="map-wrapper">
