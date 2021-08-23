@@ -2,10 +2,12 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { LOGIN } from '../consts/routes';
+
 const PrivateRoute = ({
   component: Component,
   isAuthenticated,
-  fallback = '/login',
+  fallback = LOGIN,
   ...rest
 }) => {
   return (

@@ -18,18 +18,18 @@ function SettingsPopover({ history, signOut }) {
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
-    user.getData('system').then((response) => {
-      console.log(response);
-    });
+    // user.getData('system').then((response) => {
+    //   console.log(response);
+    // });
   }, []);
 
   const userTitle = (
-    <div className='user-title-wrapper'>
-      <Avatar size='large' icon={<UserOutlined />} />
+    <div className="user-title-wrapper">
+      <Avatar size="large" icon={<UserOutlined />} />
       <p style={{ paddingLeft: 8 }}>
-        <span className='user-title__name-text'>System</span>
+        <span className="user-title__name-text">System</span>
         <br />
-        <span className='user-title__position-text'>
+        <span className="user-title__position-text">
           Системный администратор
         </span>
       </p>
@@ -43,31 +43,31 @@ function SettingsPopover({ history, signOut }) {
   return (
     <>
       <Popover
-        placement='bottomRight'
+        placement="bottomRight"
         content={
-          <div className='content-wrapper'>
+          <div className="content-wrapper">
             <p
-              className='content-item-wrapper'
+              className="content-item-wrapper"
               onClick={() => {
                 setVisible(true);
               }}
             >
-              <SettingAltLogo className='content-item-wrapper__logo' />
-              <span className='content-item-wrapper__span'>Настройки</span>
+              <SettingAltLogo className="content-item-wrapper__logo" />
+              <span className="content-item-wrapper__span">Настройки</span>
             </p>
             <p
-              className='content-item-wrapper'
+              className="content-item-wrapper"
               onClick={() => {
                 logout();
               }}
             >
-              <LogoutLogo className='content-item-wrapper__logo' />
-              <span className='content-item-wrapper__span'>Выйти</span>
+              <LogoutLogo className="content-item-wrapper__logo" />
+              <span className="content-item-wrapper__span">Выйти</span>
             </p>
           </div>
         }
         title={userTitle}
-        trigger='hover'
+        trigger="hover"
       >
         <UserLogo
           style={{
@@ -77,7 +77,6 @@ function SettingsPopover({ history, signOut }) {
       </Popover>
       <Modal
         centered
-        visible={true}
         footer={null}
         visible={visible}
         onOk={() => {
@@ -103,8 +102,8 @@ function SettingsPopover({ history, signOut }) {
             </p>
             <Form layout={'vertical'}>
               <Form.Item
-                label='Действующий пароль'
-                name='current-password'
+                label="Действующий пароль"
+                name="current-password"
                 rules={[
                   {
                     required: true,
@@ -115,25 +114,25 @@ function SettingsPopover({ history, signOut }) {
                 <Input.Password value={'password'} />
               </Form.Item>
               <Form.Item
-                name='new-password'
-                label='Новый пароль'
+                name="new-password"
+                label="Новый пароль"
                 rules={[{ required: true }]}
               >
                 <Input.Password value={'password'} />
               </Form.Item>
               <Form.Item
-                name='repeat-password'
-                label='Подвердите новый пароль'
+                name="repeat-password"
+                label="Подвердите новый пароль"
                 rules={[{ required: true }]}
               >
                 <Input.Password value={'password'} />
               </Form.Item>
               <Form.Item>
-                <Button type='primary' htmlType='submit'>
+                <Button type="primary" htmlType="submit">
                   Подтвердить
                 </Button>
                 <Button
-                  htmlType='button'
+                  htmlType="button"
                   style={{ marginLeft: 16 }}
                   onClick={() => {
                     setEdit(false);
@@ -162,19 +161,19 @@ function SettingsPopover({ history, signOut }) {
               Сергеев Сергей Сергеевич
             </p>
             <Form layout={'vertical'}>
-              <Form.Item label='Должность'>
+              <Form.Item label="Должность">
                 <Input value={'Сергеев Сергей Сергеевич'} disabled />
               </Form.Item>
-              <Form.Item label='Телефон'>
+              <Form.Item label="Телефон">
                 <Input value={'+7 (123) 45-67-890'} disabled />
               </Form.Item>
-              <Form.Item label='Email'>
+              <Form.Item label="Email">
                 <Input value={'email1@gmail.com'} disabled />
               </Form.Item>
               <div
                 style={{ display: 'flex', alignItems: 'center', width: '100%' }}
               >
-                <Form.Item label='Пароль' style={{ flex: '1 0 0' }}>
+                <Form.Item label="Пароль" style={{ flex: '1 0 0' }}>
                   <Input.Password value={'email1@gmail.com'} disabled />
                 </Form.Item>
                 <EditOutlined

@@ -12,24 +12,12 @@ const headers = {
 };
 
 function login(username, password) {
-  return client
-    .post(
-      '/auth',
-      {},
-      {
-        auth: {
-          username,
-          password,
-        },
-      }
-    )
-    .then(() => {
-      setAuth();
-    });
+  if (username === 'system' && password === 'admin') {
+    setAuth();
+    return Promise.resolve();
+  } else return Promise.reject();
 }
 
 function logout() {
-  return client.post('/logout').then(() => {
-    clearAuth();
-  });
+  clearAuth();
 }
