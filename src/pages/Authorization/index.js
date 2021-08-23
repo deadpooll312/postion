@@ -7,6 +7,7 @@ import { authenticationService } from '../../services/authenticationService';
 
 import './index.css';
 import SwtichGroup from '../../components/SwtichGroup';
+import { MAIN } from '../../consts/routes';
 
 function Authorization(props) {
   const [visible, setVisible] = useState(false);
@@ -14,7 +15,7 @@ function Authorization(props) {
 
   useEffect(() => {
     if (props.isAuthenticated) {
-      props.history.push('/');
+      props.history.push(MAIN);
     }
   }, [props]);
 
@@ -22,15 +23,15 @@ function Authorization(props) {
     authenticationService
       .login(login, password)
       .then(() => {
-        props.history.push('/upload/map');
+        props.history.push(MAIN);
       })
-      .catch((error) => {
+      .catch(() => {
         setErrorText(true);
       });
   };
 
   return (
-    <div className='auth-container'>
+    <div className="auth-container">
       <Modal
         centered
         visible={visible}
@@ -39,13 +40,13 @@ function Authorization(props) {
         onCancel={() => setVisible(false)}
         className={'auth-container--modal'}
       >
-        <p className='modal-title'>Восстановление доступа</p>
+        <p className="modal-title">Восстановление доступа</p>
         <p>
           Для восстановления доступа к аккаунту, обратитесь к администратору
           системы?
         </p>
         <Button
-          className='auth-container__btn'
+          className="auth-container__btn"
           onClick={() => {
             setVisible(false);
           }}
@@ -56,38 +57,38 @@ function Authorization(props) {
       <Card
         bordered={false}
         style={{ width: 500, padding: '0' }}
-        className='auth-container__form-wrapper'
+        className="auth-container__form-wrapper"
       >
-        <div className='auth-container__logo'></div>
-        <p className='auth-container__title'>Авторизация в системе</p>
+        <div className="auth-container__logo"></div>
+        <p className="auth-container__title">Авторизация в системе</p>
         {errorText === true && (
-          <p className='auth-container__error-text'>
+          <p className="auth-container__error-text">
             Ошибка входа, неправильный логин или пароль
           </p>
         )}
         <Form
           layout={'vertical'}
-          name='normal_login'
-          className='login-form mt-24'
+          name="normal_login"
+          className="login-form mt-24"
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >
           <Form.Item
-            name='login'
-            label='Логин'
+            name="login"
+            label="Логин"
             rules={[{ required: true, message: 'Введите логин' }]}
           >
-            <Input shape='round' className='auth-container__input' />
+            <Input shape="round" className="auth-container__input" />
           </Form.Item>
           <Form.Item
-            name='password'
-            label='Пароль*'
+            name="password"
+            label="Пароль*"
             rules={[{ required: true, message: 'Введите Пароль' }]}
           >
-            <Input className='auth-container__input' type='password' />
+            <Input className="auth-container__input" type="password" />
           </Form.Item>
           <Form.Item>
-            <Form.Item name='remember' noStyle>
+            <Form.Item name="remember" noStyle>
               <SwtichGroup
                 list={[
                   { id: 0, title: 'KZ' },
@@ -106,7 +107,7 @@ function Authorization(props) {
             </a>
           </Form.Item>
           <Form.Item>
-            <Button htmlType='submit' className='auth-container__btn'>
+            <Button htmlType="submit" className="auth-container__btn">
               Войти
             </Button>
           </Form.Item>

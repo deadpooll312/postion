@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ContentLayout from './hoc/ContentLayout';
 
+import ContentLayout from './hoc/ContentLayout';
 import PrivateRoute from './components/PrivateRoute';
-import Authorization from './pages/Authorization';
-import Main from './pages/Main';
-import UploadMap from './pages/UploadMap';
 import { Context } from './context';
+import { ROUTES } from './consts/routes';
+
 import './App.css';
 
 function App(props) {
@@ -21,9 +20,9 @@ function App(props) {
     <Context.Provider value={{ mapColor, changeMapColor }}>
       <ContentLayout isAuthenticated={props.isAuthenticated}>
         <Switch>
-          <Route path="/login" component={Authorization} exact />
-          <PrivateRoute path="/" component={Main} exact />
-          <PrivateRoute path="/upload/map" component={UploadMap} exact />
+          {ROUTES.map(({ isPrivate, ...rest }) => {
+            return isPrivate ? <PrivateRoute {...rest} /> : <Route {...rest} />;
+          })}
         </Switch>
       </ContentLayout>
     </Context.Provider>

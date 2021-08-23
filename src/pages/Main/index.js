@@ -38,7 +38,7 @@ const importantZone = [
 function Main({ mapType }) {
   const [visibleBook, setVisibleBook] = useState(false);
   useEffect(() => {
-    keepers.get();
+    // keepers.get();
   }, []);
 
   function mapRender(mapType) {
@@ -53,6 +53,7 @@ function Main({ mapType }) {
         return <MapComponent />;
     }
   }
+
   return (
     <>
       {mapRender(mapType)}
@@ -71,7 +72,7 @@ function Main({ mapType }) {
         contentWrapperStyle={{
           width: 350,
         }}
-        title='Закладки'
+        title="Закладки"
         placement={'right'}
         closable={true}
         onClose={() => {
