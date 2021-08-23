@@ -4,6 +4,8 @@ import CoordinatesForm from './components/CoordinatesForm';
 import SideBar from './components/SideBar';
 import CRSMap from './components/CRSMap/index';
 
+import { getFinalBounds } from '../../helpers/getters';
+
 import './index.scss';
 
 import svgImage from '../../assets/layers/pic-2.svg';
@@ -19,6 +21,19 @@ const UploadMap = () => {
   const onSubmit = (args) => {
     const { x, y, z, l } = args;
     const [, { lat: height, lng: width }] = bounds;
+
+    const finalBounds = getFinalBounds({
+      length: l,
+      x,
+      y,
+      pointA,
+      pointL0,
+      pointL1,
+      height,
+      width,
+    });
+
+    console.log(finalBounds);
   };
 
   return (
