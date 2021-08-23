@@ -1,11 +1,6 @@
 import L from 'leaflet';
 
-const bounds = [
-  [0, 0],
-  [468.45, 100],
-];
-
-export const initMap = ({ mapId, image }) => {
+export const initMap = ({ mapId, image, bounds }) => {
   const map = L.map(mapId, {
     crs: L.CRS.Simple,
   });
@@ -13,6 +8,8 @@ export const initMap = ({ mapId, image }) => {
   L.imageOverlay(image, bounds).addTo(map);
 
   map.fitBounds(bounds);
+
+  // map.zoomIn(1);
 
   return map;
 };
