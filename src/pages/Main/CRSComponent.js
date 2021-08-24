@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 import pic from '../../assets/layers/pic-2.svg';
 import { addMarker, initMap } from '../../helpers/mapHelpers';
+import { mockKeepers } from '../../consts/mockData';
 
 const crsData = {
   crsImage: pic,
@@ -24,10 +26,18 @@ function CRSComponent() {
     { lat: maxY, lng: maxX },
   ];
 
-  const point = { lat: 0.15, lng: 0.14 };
-
   const [map, setMap] = useState();
-  const [marker, setMarker] = useState();
+
+  const setMarkers = () => {
+    mockKeepers.forEach((keeper) => {
+      const {
+        _embedded: {
+          tag: { x, y },
+        },
+      } = keeper;
+      addMarker({ map, latLng: { lat: y, lng: x } });
+    });
+  };
 
   useEffect(() => {
     if (!map) setMap(initMap({ mapId, image: crsData.crsImage, bounds }));
@@ -35,7 +45,7 @@ function CRSComponent() {
 
   useEffect(() => {
     if (map) {
-      setMarker(addMarker({ map, latLng: point }));
+      setMarkers();
     }
   }, [map]);
 
@@ -46,4 +56,8 @@ function CRSComponent() {
   );
 }
 
-export default CRSComponent;
+const mapStateToProps = (state) => {
+  return { owsData: state.ows.owsData };
+};
+
+export default connect(mapStateToProps)(CRSComponent);
