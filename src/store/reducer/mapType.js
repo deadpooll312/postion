@@ -1,5 +1,5 @@
 const initialState = {
-  mapType: 'MAP',
+  mapType: 'PLAN',
 };
 
 export default function mapType(state = initialState, action) {

@@ -86,7 +86,7 @@ function MapComponent() {
 
   useEffect(() => {
     setColor(mapColor);
-    console.log(mapColor);
+    console.log('mapColor: ', mapColor);
   }, [mapColor]);
 
   return (
