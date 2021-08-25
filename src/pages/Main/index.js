@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import keepers from '../../services/keepers';
 import MapComponent from './MapComponent';
 import CRSComponent from './CRSComponent';
 import Buttons from './Buttons';

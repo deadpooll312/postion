@@ -7,7 +7,7 @@ import { authenticationService } from '../../services/authenticationService';
 
 import './index.css';
 import SwtichGroup from '../../components/SwtichGroup';
-import { MAIN } from '../../consts/routes';
+import { MAIN, SHOW_MAP } from '../../consts/routes';
 import setAuth from '../../helpers/setAuth';
 
 function Authorization(props) {
@@ -25,7 +25,7 @@ function Authorization(props) {
       .login(login, password)
       .then(() => {
         setAuth();
-        props.history.push(MAIN);
+        props.history.push(SHOW_MAP);
       })
       .catch(() => {
         setErrorText(true);
