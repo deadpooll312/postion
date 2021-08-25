@@ -48,3 +48,9 @@ export const addLayerGroup = ({ map, markers }) => {
 
   return layerGroup;
 };
+
+export const onClickMarker = ({ marker, component }) => {
+  marker.bindPopup(component).on('click', function () {
+    this.openPopup();
+  });
+};

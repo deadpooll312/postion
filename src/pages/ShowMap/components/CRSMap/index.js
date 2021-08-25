@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { renderToStaticMarkup } from 'react-dom/server';
 
 import pic from '../../../../assets/layers/pic-2.svg';
 import {
   addLayerGroup,
   createMarker,
   initMap,
+  onClickMarker,
 } from '../../../../helpers/mapHelpers';
 import { getKeepers } from '../../../../services/ows';
 
@@ -21,6 +23,24 @@ const crsData = {
   },
   z: 0.5,
   title: 'crsmap',
+};
+
+const ReactElem = () => {
+  useEffect(() => {
+    console.log('created');
+  }, []);
+  return (
+    <div>
+      this is react elem
+      <button
+        onClick={() => {
+          console.log('fadfa');
+        }}
+      >
+        click me
+      </button>
+    </div>
+  );
 };
 
 function CRSMap(props) {
@@ -50,6 +70,7 @@ function CRSMap(props) {
       marker.on('click', () => {
         handleClickMarker(keeper);
       });
+      // onClickMarker({ marker, component: <ReactElem /> });
 
       return marker;
     });
