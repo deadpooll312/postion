@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import pic from '../../assets/layers/pic-2.svg';
 import { addMarker, initMap } from '../../helpers/mapHelpers';
-import { mockKeepers } from '../../consts/mockData';
+import { getKeepers } from '../../services/ows';
 
 const crsData = {
   crsImage: pic,
@@ -19,6 +19,7 @@ const crsData = {
 
 function CRSComponent() {
   const mapId = 'map';
+  const [data, setData] = React.useState();
 
   const { minX, minY, maxX, maxY } = crsData.bounds;
   const bounds = [
@@ -28,8 +29,8 @@ function CRSComponent() {
 
   const [map, setMap] = useState();
 
-  const setMarkers = () => {
-    mockKeepers.forEach((keeper) => {
+  const setMarkers = (keepers) => {
+    keepers.forEach((keeper) => {
       const {
         _embedded: {
           tag: { x, y },
@@ -44,10 +45,23 @@ function CRSComponent() {
   }, []);
 
   useEffect(() => {
-    if (map) {
-      setMarkers();
+    if (map && data) {
+      setMarkers(data);
     }
-  }, [map]);
+  }, [map, data]);
+
+  useEffect(() => {
+    const keepersInterval = setInterval(() => {
+      getKeepers()
+        .then((res) => setData(res?.data?.items))
+        .catch((err) => {
+          clearInterval(keepersInterval);
+          throw err;
+        });
+    }, 3000);
+
+    return () => clearInterval(keepersInterval);
+  }, []);
 
   return (
     <div className="map-wrapper">

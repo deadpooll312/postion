@@ -1,6 +1,5 @@
 import client from '../helpers/client';
 import clearAuth from '../helpers/clearAuth';
-import setAuth from '../helpers/setAuth';
 
 export const authenticationService = {
   login,
@@ -12,10 +11,13 @@ const headers = {
 };
 
 function login(username, password) {
-  if (username === 'system' && password === 'admin') {
-    setAuth();
-    return Promise.resolve();
-  } else return Promise.reject();
+  return client.post('auth', {},  {
+    headers,
+    auth: {
+      username,
+      password
+    }
+  });
 }
 
 function logout() {
