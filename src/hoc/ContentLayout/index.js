@@ -10,7 +10,7 @@ import { ReactComponent as DashboardLogo } from '../../assets/icons/dashboard.sv
 import { ReactComponent as MapLocationLogo } from '../../assets/icons/map-location.svg';
 import { ReactComponent as SettingsLogo } from '../../assets/icons/settings.svg';
 
-import { UPLOAD_MAP } from '../../consts/routes';
+import { UPLOAD_MAP, SHOW_MAP } from '../../consts/routes';
 
 const { Content } = Layout;
 
@@ -117,6 +117,22 @@ function ContentLayout(props) {
                     }}
                   >
                     Maps list
+                  </span>
+                </p>
+              </Link>
+              <Link to={SHOW_MAP} onClick={() => setVisible(false)}>
+                <p className="d-flex-center-center">
+                  <MapLocationLogo
+                    style={{
+                      flex: '1 1 30%',
+                    }}
+                  />
+                  <span
+                    style={{
+                      flex: '1 1 70%',
+                    }}
+                  >
+                    View Map
                   </span>
                 </p>
               </Link>

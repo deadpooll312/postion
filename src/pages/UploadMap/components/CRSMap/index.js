@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import './index.scss';
-
 import {
   addMarker,
   addPolyLine,
   initMap,
 } from '../../../../helpers/mapHelpers';
 import { getBounds } from '../../../../helpers/getters';
+import { createImage } from '../../../../helpers/imageHelpers';
+
+import './index.scss';
 
 const CRSMap = (props) => {
   const {
@@ -32,13 +33,12 @@ const CRSMap = (props) => {
 
   const [line, setLine] = useState();
 
-  const initBounds = () => {
-    const img = new Image();
-    img.src = image;
+  const handleLoadImage = (img) => {
+    setBounds(getBounds(img.width, img.height));
+  };
 
-    img.onload = function () {
-      setBounds(getBounds(this.width, this.height));
-    };
+  const initBounds = () => {
+    createImage(image, handleLoadImage);
   };
 
   const initPoints = () => {
@@ -101,7 +101,7 @@ const CRSMap = (props) => {
 
   return (
     <div className="map-wrapper">
-      <div id="map" />
+      <div id={mapId} />
     </div>
   );
 };

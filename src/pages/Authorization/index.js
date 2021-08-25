@@ -8,6 +8,7 @@ import { authenticationService } from '../../services/authenticationService';
 import './index.css';
 import SwtichGroup from '../../components/SwtichGroup';
 import { MAIN } from '../../consts/routes';
+import setAuth from '../../helpers/setAuth';
 
 function Authorization(props) {
   const [visible, setVisible] = useState(false);
@@ -23,6 +24,7 @@ function Authorization(props) {
     authenticationService
       .login(login, password)
       .then(() => {
+        setAuth();
         props.history.push(MAIN);
       })
       .catch(() => {
