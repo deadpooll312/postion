@@ -3,7 +3,7 @@ import { Modal, Button } from 'antd';
 
 import './index.css';
 
-function ModalComponent({ sosVisible, onCloseSos }) {
+function ModalComponent({ sosVisible, onCloseSos, handleClickSendSos }) {
   return (
     <Modal
       centered
@@ -12,21 +12,22 @@ function ModalComponent({ sosVisible, onCloseSos }) {
       onOk={() => onCloseSos()}
       onCancel={() => onCloseSos()}
     >
-      <p className='sos-modal-title'>Отправить SOS</p>
-      <p className='sos-modal-text'>
+      <p className="sos-modal-title">Отправить SOS</p>
+      <p className="sos-modal-text">
         Вы действительно хотите отправить сигнал SOS?
       </p>
-      <div className='d-flex-sb'>
+      <div className="d-flex-sb">
         <Button
-          className='sos-modal-send-btn'
+          className="sos-modal-send-btn"
           onClick={() => {
-            //   setVisible(false);
+            onCloseSos(false);
+            handleClickSendSos()
           }}
         >
           Отправить
         </Button>
         <Button
-          className='sos-modal-cancel-btn'
+          className="sos-modal-cancel-btn"
           onClick={() => {
             onCloseSos();
           }}
