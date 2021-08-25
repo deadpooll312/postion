@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import pic from '../../assets/layers/pic-2.svg';
-import { addMarker, initMap } from '../../helpers/mapHelpers';
+import { addLayerGroup, createMarker, initMap } from '../../helpers/mapHelpers';
 import { getKeepers } from '../../services/ows';
 
 const crsData = {
@@ -19,7 +19,8 @@ const crsData = {
 
 function CRSComponent() {
   const mapId = 'map';
-  const [data, setData] = React.useState();
+  const [data, setData] = useState();
+  const [markersGroup, setMarkersGroup] = useState();
 
   const { minX, minY, maxX, maxY } = crsData.bounds;
   const bounds = [
@@ -30,14 +31,18 @@ function CRSComponent() {
   const [map, setMap] = useState();
 
   const setMarkers = (keepers) => {
-    keepers.forEach((keeper) => {
+    const markers = keepers.map((keeper) => {
       const {
         _embedded: {
           tag: { x, y },
         },
       } = keeper;
-      addMarker({ map, latLng: { lat: y, lng: x } });
+      const marker = createMarker({ map, latLng: { lat: y, lng: x } });
+
+      return marker;
     });
+
+    setMarkersGroup(addLayerGroup({ map, markers }));
   };
 
   useEffect(() => {
@@ -46,6 +51,7 @@ function CRSComponent() {
 
   useEffect(() => {
     if (map && data) {
+      markersGroup?.remove();
       setMarkers(data);
     }
   }, [map, data]);
