@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { renderToStaticMarkup } from 'react-dom/server';
 
 import pic from '../../../../assets/layers/pic-2.svg';
 import {
@@ -9,7 +8,7 @@ import {
   initMap,
   onClickMarker,
 } from '../../../../helpers/mapHelpers';
-import { getKeepers } from '../../../../services/ows';
+import { getKeepers } from '../../../../services/keepers';
 
 import './index.scss';
 
