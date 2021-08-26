@@ -6,7 +6,7 @@ import pic from '../../assets/layers/pic-3.svg';
 function CRSComponent() {
   return (
     <Map
-      style={{ height: '100vh' }}
+      style={{ height: '100%' }}
       center={[200, 200]}
       zoom={1}
       crs={CRS.Simple}

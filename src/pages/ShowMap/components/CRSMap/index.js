@@ -55,6 +55,8 @@ function CRSMap(props) {
     { lat: maxY, lng: maxX },
   ];
 
+  let keepersInterval;
+
   const [map, setMap] = useState();
 
   const setMarkers = (keepers) => {
@@ -77,6 +79,15 @@ function CRSMap(props) {
     setMarkersGroup(addLayerGroup({ map, markers }));
   };
 
+  const requestKeepers = () => {
+    getKeepers()
+      .then((res) => setData(res?.data?.items))
+      .catch((err) => {
+        clearInterval(keepersInterval);
+        throw err;
+      });
+  };
+
   useEffect(() => {
     if (!map) setMap(initMap({ mapId, image: crsData.crsImage, bounds }));
   }, []);
@@ -89,14 +100,8 @@ function CRSMap(props) {
   }, [map, data]);
 
   useEffect(() => {
-    const keepersInterval = setInterval(() => {
-      getKeepers()
-        .then((res) => setData(res?.data?.items))
-        .catch((err) => {
-          clearInterval(keepersInterval);
-          throw err;
-        });
-    }, 3000);
+    requestKeepers();
+    keepersInterval = setInterval(requestKeepers, 3000);
 
     return () => clearInterval(keepersInterval);
   }, []);

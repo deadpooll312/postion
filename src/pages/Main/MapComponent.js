@@ -102,7 +102,7 @@ function MapComponent() {
         zoom={17}
         ref={leafFletMap}
         maxZoom={22}
-        style={{ height: '100vh' }}
+        style={{ height: '100%' }}
       >
         {color && (
           <GeoJSON
