@@ -30,55 +30,106 @@ import { sendSos } from '../../services/sos';
 function UserDrawer(props) {
   const { visible, onClose, keeper } = props;
 
+  const sensors = keeper?._embedded?.tag?.sensors;
+
   const [sosVisible, setSosVisible] = useState(false);
   const [first, setFirst] = useState(true);
-  const elementsList = [
-    {
-      text: 'Движение',
-      logo: <PlanLogo />,
-      value: 'Подвижность',
-    },
-    {
-      text: 'Температура',
-      logo: <TemperatureLogo />,
-      value: 7,
-    },
-    {
-      text: 'Падение/удар',
-      logo: <WarningLogo />,
-      value: 'Normal',
-    },
-    {
-      text: 'Положение',
-      logo: <BrowserSafariLogo />,
-      value: 'YH',
-    },
-    {
-      text: 'Барометр',
-      logo: <DashboardLogo />,
-      value: -4568,
-    },
-    {
-      text: 'Температура барометра',
-      logo: <CelsiusLogo />,
-      value: 11,
-    },
-    {
-      text: 'Пульс (браслет)',
-      logo: <SignalGraphLogo />,
-      value: 82,
-    },
-    {
-      text: 'Шагомер (браслет)',
-      logo: <StepsLogo />,
-      value: 1222,
-    },
-    {
-      text: 'Батарея (браслет)',
-      logo: <BatteryLogo />,
-      value: '50%',
-    },
-  ];
+
+  const elementsList = keeper
+    ? [
+        {
+          text: 'Движение',
+          logo: <PlanLogo />,
+          value: sensors?.motion,
+        },
+        {
+          text: 'Температура',
+          logo: <TemperatureLogo />,
+          value: sensors.temperature,
+        },
+        {
+          text: 'Падение/удар',
+          logo: <WarningLogo />,
+          value: sensors.impact_fall,
+        },
+        {
+          text: 'Положение',
+          logo: <BrowserSafariLogo />,
+          value: sensors.orientation,
+        },
+        {
+          text: 'Барометр',
+          logo: <DashboardLogo />,
+          value: sensors.barometer,
+        },
+        {
+          text: 'Температура барометра',
+          logo: <CelsiusLogo />,
+          value: sensors.barometer_temperature,
+        },
+        {
+          text: 'Пульс (браслет)',
+          logo: <SignalGraphLogo />,
+          value: '~82',
+        },
+        {
+          text: 'Шагомер (браслет)',
+          logo: <StepsLogo />,
+          value: '~1222',
+        },
+        {
+          text: 'Батарея (браслет)',
+          logo: <BatteryLogo />,
+          value: sensors.battery_state,
+        },
+      ]
+    : [
+        {
+          text: 'Движение',
+          logo: <PlanLogo />,
+          value: 'Подвижность',
+        },
+        {
+          text: 'Температура',
+          logo: <TemperatureLogo />,
+          value: 7,
+        },
+        {
+          text: 'Падение/удар',
+          logo: <WarningLogo />,
+          value: 'Normal',
+        },
+        {
+          text: 'Положение',
+          logo: <BrowserSafariLogo />,
+          value: 'YH',
+        },
+        {
+          text: 'Барометр',
+          logo: <DashboardLogo />,
+          value: -4568,
+        },
+        {
+          text: 'Температура барометра',
+          logo: <CelsiusLogo />,
+          value: 11,
+        },
+        {
+          text: 'Пульс (браслет)',
+          logo: <SignalGraphLogo />,
+          value: 82,
+        },
+        {
+          text: 'Шагомер (браслет)',
+          logo: <StepsLogo />,
+          value: 1222,
+        },
+        {
+          text: 'Батарея (браслет)',
+          logo: <BatteryLogo />,
+          value: '50%',
+        },
+      ];
 
   function onChange(date, dateString) {
     console.log(date, dateString);
@@ -128,13 +179,15 @@ function UserDrawer(props) {
                 <p className="stack-drawer-title mt-20">{keeper.name}</p>
                 <p className="d-flex-sb">
                   <span>Табельный номер:</span>
-                  <span className="green">№45123345</span>
+                  <span className="green">~№45123345</span>
                 </p>
                 <p className="d-flex-sb">
-                  <span>Должность:</span> <span className="green">Сварщик</span>
+                  <span>Должность:</span>
+                  <span className="green">~Сварщик</span>
                 </p>
                 <p className="d-flex-sb">
-                  <span>Батарея:</span> <span className="green">Полная</span>
+                  <span>Батарея:</span>
+                  <span className="green">{sensors.battery_state}</span>
                 </p>
                 <Divider />
                 <IconsGroup
