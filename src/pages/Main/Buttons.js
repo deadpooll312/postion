@@ -10,7 +10,7 @@ function Buttons({ showBook }) {
   return (
     <>
       <SosPopover />
-      <Affix style={{ position: 'absolute', top: 100, right: 50, zIndex: 999 }}>
+      <Affix style={{ position: 'absolute', top: 135, right: 60, zIndex: 999 }}>
         <Button
           style={{
             fontWeight: 900,
@@ -35,7 +35,7 @@ function Buttons({ showBook }) {
         </Button>
       </Affix>
       <Affix
-        style={{ position: 'absolute', bottom: 130, right: 50, zIndex: 999 }}
+        style={{ position: 'absolute', bottom: 165, right: 60, zIndex: 999 }}
       >
         <Button
           style={{

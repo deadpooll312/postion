@@ -17,7 +17,7 @@ function SosPopover() {
     },
   ]);
   return (
-    <Affix style={{ position: 'absolute', bottom: 50, left: 50, zIndex: 999 }}>
+    <Affix style={{ position: 'absolute', bottom: 60, left: 60, zIndex: 999 }}>
       <Popover
         placement='topLeft'
         content={
