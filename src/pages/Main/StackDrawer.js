@@ -115,7 +115,7 @@ function StackDrawer() {
         </div>
       </Drawer>
       <Affix
-        style={{ position: 'absolute', bottom: 50, right: 50, zIndex: 999 }}
+        style={{ position: 'absolute', bottom: 60, right: 60, zIndex: 999 }}
       >
         <Button
           style={{
